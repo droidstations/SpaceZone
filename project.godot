@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Space Zone"
+run/main_scene="res://Scenes/player.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
@@ -21,6 +22,11 @@ window/size/viewport_height=320
 window/size/window_width_override=480
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [input]
 
