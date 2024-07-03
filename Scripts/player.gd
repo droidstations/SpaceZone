@@ -11,7 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$Ship/Boosters.animation = "forward"
+	
 	var input = Input.get_vector("left", "right", "up", "down")
 	if input.x > 0:
 		$Ship.frame = 2
