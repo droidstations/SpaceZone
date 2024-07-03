@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwvmxnyk04rb6"]
+
+[ext_resource type="Texture2D" uid="uid://dudbxw2k4xis6" path="res://Mini Pixel Pack 3/Player ship/Player_ship (16 x 16).png" id="1_gsua3"]
+[ext_resource type="Texture2D" uid="uid://b12cvm2cy010l" path="res://Mini Pixel Pack 3/Player ship/Boosters (16 x 16).png" id="2_ulyrr"]
+[ext_resource type="Texture2D" uid="uid://4xeprvfy0a4s" path="res://Mini Pixel Pack 3/Player ship/Boosters_left (16 x 16).png" id="3_ced5f"]
+[ext_resource type="Texture2D" uid="uid://b4madm5hcmrl8" path="res://Mini Pixel Pack 3/Player ship/Boosters_right (16 x 16).png" id="4_8dmgl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im0co"]
+atlas = ExtResource("2_ulyrr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccpbc"]
+atlas = ExtResource("2_ulyrr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hxjx"]
+atlas = ExtResource("3_ced5f")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjc3i"]
+atlas = ExtResource("3_ced5f")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdkbe"]
+atlas = ExtResource("4_8dmgl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkc57"]
+atlas = ExtResource("4_8dmgl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ab41b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im0co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccpbc")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hxjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjc3i")
+}],
+"loop": true,
+"name": &"left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdkbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkc57")
+}],
+"loop": true,
+"name": &"right",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqbsa"]
+size = Vector2(16, 14)
+
+[node name="Player" type="Area2D"]
+
+[node name="Ship" type="Sprite2D" parent="."]
+texture = ExtResource("1_gsua3")
+hframes = 3
+frame = 1
+
+[node name="Boosters" type="AnimatedSprite2D" parent="Ship"]
+position = Vector2(0, 14)
+sprite_frames = SubResource("SpriteFrames_ab41b")
+animation = &"right"
+frame = 1
+frame_progress = 0.887288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uqbsa")
