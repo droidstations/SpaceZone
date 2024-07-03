@@ -11,6 +11,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$Ship/Boosters.animation = "forward"
 	var input = Input.get_vector("left", "right", "up", "down")
+	if input.x > 0:
+		$Ship.frame = 2
+		$Ship/Boosters.play("right")
+	elif input.x < 0:
+		$Ship.frame = 0
+		$Ship/Boosters.play("left")
+	else:
+		$Ship.frame = 1
+		$Ship/Boosters.play("forward")
 	position += input * speed * delta
-	position = position.clamp(Vector2.ZERO, screensize)
+	position.x = clamp(position.x, 8, screensize.x - 8)
+	position.y = clamp(position.y, 8, screensize.y - 8)
