@@ -8,7 +8,11 @@ var can_shoot = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	start()
+	
+func start():
+	position = Vector2(screensize.x / 2, screensize.y -64)
+	$GunCooldown.wait_time = cooldown
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,3 +30,19 @@ func _process(delta):
 	position += input * speed * delta
 	position.x = clamp(position.x, 8, screensize.x - 8)
 	position.y = clamp(position.y, 8, screensize.y - 8)
+	
+	if Input.is_action_pressed("shoot"):
+		shoot()
+
+func shoot():
+	if not can_shoot:
+		return
+	can_shoot = false
+	$GunCooldown.start()
+	var b = bullet_scene.instantiate()
+	get_tree().root.add_child(b)
+	b.start(position + Vector2(0, -8))
+
+
+func _on_gun_cooldown_timeout():
+	can_shoot = true
